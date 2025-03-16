@@ -17,5 +17,3 @@
 3. /question(get) - выдаёт сущность Question по SurveyId и OrdinalNumber(порядковый номер вопроса в опроснике).
 4. /interview(post) - создаёт новую сущность Interview и возвращает первый вопрос из опроса.
 5. /result(post) - создаёт новую сущность Result и возвращает id следующего опроса, либо NoContent.
-
-^^![Иллюстрация к проекту](https://github.com/jon/coolproject/raw/master/image/image.png)
