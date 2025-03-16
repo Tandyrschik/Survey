@@ -1,0 +1,42 @@
+﻿
+CREATE TABLE "Survey" ("Id" UUID NOT NULL PRIMARY KEY,
+					   "Title" varchar(255) NOT NULL,
+					   "Description" text);
+
+CREATE TABLE "Interview" ("Id" UUID NOT NULL PRIMARY KEY,
+						  "SurveyId" UUID NOT NULL REFERENCES "Survey"("Id"));
+
+CREATE TABLE "Question" ("Id" UUID NOT NULL PRIMARY KEY,
+					     "SurveyId" UUID NOT NULL REFERENCES "Survey"("Id"),
+					     "Title" varchar(255) NOT NULL,
+					     "Description" text,
+					     "NumberOfChoices" int NOT NULL,
+					     "OrdinalNumber" int NOT NULL);
+
+CREATE TABLE "Answer" ("Id" UUID NOT NULL PRIMARY KEY,
+					   "QuestionId" UUID NOT NULL REFERENCES "Question"("Id"),
+				       "Title" varchar(255) NOT NULL,
+					   "OrdinalNumber" int NOT NULL);
+
+CREATE TABLE "Result" ("Id" UUID NOT NULL PRIMARY KEY,
+				  	   "InterviewId" UUID NOT NULL REFERENCES "Interview"("Id"),
+					   "QuestionId" UUID NOT NULL REFERENCES "Question"("Id"));
+
+CREATE TABLE "AnswerResult" ("AnswerId" UUID NOT NULL REFERENCES "Answer"("Id"),
+					         "ResultId" UUID NOT NULL REFERENCES "Result"("Id"),
+						     PRIMARY KEY ("AnswerId", "ResultId"));
+
+
+CREATE UNIQUE INDEX "IX_Interview_SurveyId" ON "Interview"("SurveyId");
+
+CREATE UNIQUE INDEX "IX_Question_SurveyId" ON "Question"("SurveyId");
+
+CREATE UNIQUE INDEX "IX_Answer_QuestionId" ON "Answer"("QuestionId");
+
+CREATE UNIQUE INDEX "IX_Result_InterviewId" ON "Result"("InterviewId");
+CREATE UNIQUE INDEX "IX_Result_QuestionId" ON "Result"("QuestionId");
+
+CREATE UNIQUE INDEX "IX_AnswerResult_AnswerId" ON "AnswerResult"("AnswerId");
+CREATE UNIQUE INDEX "IX_AnswerResult_ResultId" ON "AnswerResult"("ResultId");
+
+CREATE UNIQUE INDEX "IX_Survey_Title" ON "Survey"("Title");
