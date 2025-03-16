@@ -14,7 +14,7 @@
 # Описание эндпоинтов.
 1. /survey(post) - создает новую сущность Survey и возвращает id созданной сущности.
 2. /question(post) - создает новую сущность Question и возвращает id созданной сущности.
-3. /question(get) - выдаёт сущность Question по SurveyId и OrdinalNumber(порядковый номер вопроса в опроснике).
+3. /question(get) - выдаёт сущность Question по его Id.
 4. /interview(post) - создаёт новую сущность Interview и возвращает первый вопрос из опроса.
 5. /result(post) - создаёт новую сущность Result и возвращает id следующего опроса, либо NoContent.
 
