@@ -15,10 +15,10 @@ namespace Survey.BL.CRUD.V1.Question.ReadQuestion
                 .Include(q => q.Answers.OrderBy(a => a.OrdinalNumber))
                 .AsSplitQuery()
                 .AsNoTracking()
-                .FirstOrDefaultAsync(q => q.SurveyId == request.SurveyId && q.OrdinalNumber == request.OrdinalNumber);
+                .FirstOrDefaultAsync(q => q.Id == request.Id);
             if (question == null) return Result<ReadQuestionResponse>.NotFound("Question not found.");
 
-            return Result<ReadQuestionResponse>.Created(question.Adapt<ReadQuestionResponse>());
+            return Result<ReadQuestionResponse>.Ok(question.Adapt<ReadQuestionResponse>());
         }
     }
 }

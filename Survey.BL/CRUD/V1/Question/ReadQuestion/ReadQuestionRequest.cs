@@ -2,7 +2,6 @@
 {
     public record ReadQuestionRequest
     {
-        public Guid SurveyId { get; set; }
-        public int OrdinalNumber { get; set; } = 0;
+        public Guid Id { get; set; }
     }
 }
