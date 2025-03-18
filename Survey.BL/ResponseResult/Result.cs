@@ -27,7 +27,7 @@ namespace Survey.BL.ResponseResult
 
         public static Result<TValue> BadRequest(string? message = null)
         {
-            return new(404, message);
+            return new(400, message);
         }
 
         public static Result<TValue> Ok(TValue? value, string? message = null)
