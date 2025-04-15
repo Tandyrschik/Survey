@@ -18,7 +18,7 @@ namespace Survey.API.Controllers.V1
         public async Task<IActionResult> Create(CreateQuestionRequest request)
         {
             var response = await createQuestionHandler.HandleAsync(request);
-            if (response.StatusCode == 201) return Ok(response.Value);
+            if (response.StatusCode == 201) return Created(string.Empty, response.Value);
 
             return StatusCode(response.StatusCode, response.Message);
         }
